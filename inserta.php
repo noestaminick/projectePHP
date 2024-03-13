@@ -1,16 +1,16 @@
 <?php
 function inserta($conn){
-    $nom=readline("inserta el nom del client: ");
-    $poblacio=readline("inserta la població del client: ");
+    $nom=readline("inserta el nom de la tasca: ");
+    $contingut=readline("inserta el contingut de la tasca: ");
 
-    $sql = "INSERT INTO clients.clients (nom, poblacio) 
-    VALUES ('$nom', '$poblacio')";
+    $sql = "INSERT INTO tasques.tasques (nom, contingut) 
+    VALUES ('$nom', '$contingut')";
 
     if (mysqli_query($conn, $sql)===TRUE){
-        echo "client afegit correctament\n";
+        echo "tasca afegida correctament.\n";
     }
     else{
-        echo"Error al afegir l'usuari, revisa la sintaxi: " . $sql . "<br>" . $conn->error;
+        echo"Error al afegir la tasca, revisa la sintaxi: " . $sql . "<br>" . $conn->error;
     }
     mysqli_close($conn);
 }

@@ -4,14 +4,14 @@ function borra($conn){
         die("Error de conexió: ". mysqli_connect_error());
     }    
 
-    $id_borrar = readline("ID del client a borrar: ");
+    $id_borrar = readline("ID de la tasca a borrar: ");
 
-    $sql_borrar = "DELETE FROM clients.clients WHERE ID=$id_borrar";
+    $sql_borrar = "DELETE FROM tasques.tasques WHERE ID=$id_borrar";
     
     if($conn->query($sql_borrar) === TRUE){
-        echo "Client eliminat amb èxit\n";
+        echo "Tasca eliminada amb èxit\n";
     } else{
-        echo "Error al eliminar l'usuari: " . $conn->error. "\n";
+        echo "Error al eliminar la tasca " . $conn->error. "\n";
     }
     
     mysqli_close($conn);  

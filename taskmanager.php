@@ -1,15 +1,17 @@
 <?php
-include 'OpenConn.php';
-include 'borra.php';
-include 'inserta.php';
-include 'mostra.php';
 
+if (PHP_SAPI!="cli"){
+    echo "Executa l'aplicació a través del CLI\n";
+    return 0;
+}
+
+include 'repoTaskManager.php';
 $conexio=OpenConn();
 
 echo "Selecciona una opció:\n";
-echo "1. Veure usuaris\n";
-echo "2. Agregar usuaris\n";
-echo "3. Borrar usuaris\n";
+echo "1. Veure tasques\n";
+echo "2. Agregar tasca\n";
+echo "3. Borrar tasca\n";
 
 $opcio=readline("Opció: ");
 

@@ -1,0 +1,15 @@
+function getAllTasks() {
+	$r = array();
+	$r = fetchAssoc(...
+
+	$r = array(
+		0 => array(
+			'id' 	=>	1,
+			'name'	=> '',
+			'content' => ''
+		),
+                1 => array( 
+                )
+	);
+
+}
