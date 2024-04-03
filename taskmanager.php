@@ -2,7 +2,7 @@
 
 if (PHP_SAPI!="cli"){
     echo "Executa l'aplicació a través del CLI\n";
-    return 0;
+    die();
 }
 
 include 'repoTaskManager.php';
@@ -11,7 +11,9 @@ $conexio=OpenConn();
 echo "Selecciona una opció:\n";
 echo "1. Veure tasques\n";
 echo "2. Agregar tasca\n";
-echo "3. Borrar tasca\n";
+echo "3. Completar tasca\n";
+echo "4. Borrar tasca\n";
+echo "5. Surt del programa\n";
 
 $opcio=readline("Opció: ");
 
@@ -23,7 +25,11 @@ switch($opcio){
         $usuaris=inserta($conexio); 
         break;
     case '3':
-        $usuaris=borra($conexio);   
+        $usuaris=completa($conexio);   
         break;
+    case '4':
+        $usuaris=borra($conexio);
+    case '5':
+        die("Adéu.\n");
 }
 ?>

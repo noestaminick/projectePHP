@@ -48,6 +48,7 @@ function mostra($conn){
             echo "ID: " . $tasca['ID']. "\n";
             echo "nom: " . $tasca['nom']. "\n";
             echo "contingut: " . $tasca['contingut']. "\n";
+            echo "estat: " . $tasca['estat']. "\n";
         } else {
             echo "No s'ha trobat cap tasca amb aquesta ID.\n";
         }
@@ -59,6 +60,24 @@ function mostra($conn){
             echo "{$fila['ID']} - {$fila['nom']} - {$fila['contingut']}\n";
         }
     }    
+    mysqli_close($conn);
+}
+
+#Funció completa
+function completa($conn){
+    if(!$conn){
+        die("Error de conexió: ". mysqli_connect_error());
+    }
+    $id_completa = readline("ID de la tasca que has completat: ");
+
+    $sql_completa = "UPDATE tasques.tasques SET estat = 'Completat' WHERE ID=$id_completa";
+
+    if($conn->query($sql_completa) === TRUE){
+        echo "Tasca completada amb èxit\n";
+    } else{
+        echo "Error al completar la tasca " . $conn->error. "\n";
+    }
+    
     mysqli_close($conn);
 }
 
