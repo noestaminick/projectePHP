@@ -8,6 +8,7 @@ if (PHP_SAPI!="cli"){
 include 'repoTaskManager.php';
 $conexio=OpenConn();
 
+echo chr(27).chr(91). 'H'.chr(27).chr(91).'J';
 echo "Selecciona una opció:\n";
 echo "1. Veure tasques\n";
 echo "2. Agregar tasca\n";
