@@ -57,7 +57,7 @@ function mostra($conn){
         $resultat = mysqli_query($conn, $sql);
         echo "Llista de tasques:\n";
         while ($fila = mysqli_fetch_assoc($resultat)) {
-            echo "{$fila['ID']} - {$fila['nom']} - {$fila['contingut']}\n";
+            echo "{$fila['ID']} - {$fila['nom']} - {$fila['contingut']} - {$fila['estat']}\n";
         }
     }    
     mysqli_close($conn);
