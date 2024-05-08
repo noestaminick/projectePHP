@@ -5,8 +5,15 @@ if (PHP_SAPI!="cli"){
     die();
 }
 
-include 'repoTaskManager.php';
+require 'repoTaskManager.php';
 $conexio=OpenConn();
+
+$options=getopt('s:a:c:d');
+var_dump($options);
+
+if ($args<2) {
+    
+}
 
 echo chr(27).chr(91). 'H'.chr(27).chr(91).'J';
 echo "Selecciona una opció:\n";
