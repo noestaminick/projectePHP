@@ -8,11 +8,16 @@ if (PHP_SAPI!="cli"){
 require 'repoTaskManager.php';
 $conexio=OpenConn();
 
-$options=getopt('s:a:c:d');
+$options=getopt('s:a:c:d:h:i:');
 var_dump($options);
 
-if ($args<2) {
-    
+if ($argc<2 || isset($options["h"])) {
+    echo "-s: Mostra les tasques.\n";
+    echo "-a: Agrega una tasca.\n";
+    echo "-c: Completa una tasca.\n";
+    echo "-d: Esborra una tasca.\n";
+    echo "-i: Obre el menú interactiu en el CLI.\n";
+    echo "-h: Mostra aquesta ajuda.\n";
 }
 
 echo chr(27).chr(91). 'H'.chr(27).chr(91).'J';
@@ -26,16 +31,16 @@ echo "5. Surt del programa\n";
 $opcio=readline("Opció: ");
 
 switch($opcio){
-    case '1':
+    case 's':
         $usuaris=mostra($conexio);
         break;
-    case '2':
+    case 'a':
         $usuaris=inserta($conexio); 
         break;
-    case '3':
+    case 'c':
         $usuaris=completa($conexio);   
         break;
-    case '4':
+    case 'd':
         $usuaris=borra($conexio);
     case '5':
         die("Adéu.\n");

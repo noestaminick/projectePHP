@@ -7,7 +7,7 @@ function OpenConn()
     $username="xavi";
     $password="admin";
     $dbname="tasques";
-    $table="tasques";
+    
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
