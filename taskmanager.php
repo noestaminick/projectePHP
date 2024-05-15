@@ -1,12 +1,13 @@
 <?php
 
-if (PHP_SAPI!="cli"){
+if (php_sapi_name()!="cli"){
     echo "Executa l'aplicació a través del CLI\n";
     die();
 }
 
 include 'repoTaskManager.php';
 $conexio=OpenConn();
+
 
 echo chr(27).chr(91). 'H'.chr(27).chr(91).'J';
 echo "Selecciona una opció:\n";
@@ -30,6 +31,7 @@ switch($opcio){
         break;
     case '4':
         $usuaris=borra($conexio);
+        break;
     case '5':
         die("Adéu.\n");
 }

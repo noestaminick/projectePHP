@@ -1,48 +1,46 @@
 <?php
 
-if (PHP_SAPI!="cli"){
+if (php_sapi_name()!="cli"){
     echo "Executa l'aplicació a través del CLI\n";
     die();
 }
 
-require 'repoTaskManager.php';
+include 'repoTaskManager.php';
 $conexio=OpenConn();
 
-$options=getopt('s:a:c:d:h:i:');
-var_dump($options);
+$options=getopt('s:h');
 
-if ($argc<2 || isset($options["h"])) {
-    echo "-s: Mostra les tasques.\n";
-    echo "-a: Agrega una tasca.\n";
-    echo "-c: Completa una tasca.\n";
-    echo "-d: Esborra una tasca.\n";
-    echo "-i: Obre el menú interactiu en el CLI.\n";
-    echo "-h: Mostra aquesta ajuda.\n";
+function ayuda() {
+    echo "IMPORTANT: A l'hora d'escriure la comanda has de tenir en compte les majúscules i les minúscules.\n";
+    echo "mostra: Cerca la tasca a través de la seva ID o les mostra totes.\n";
+    echo "agrega: Afageix una tasca a la llista.\n";
+    echo "completa: Marca una tasca com a finalitzada.\n";
+    echo "esborra: Elimina una tasca.\n";
+    echo "ajuda: Mostra les comandes que es mostren.\n";
 }
 
-echo chr(27).chr(91). 'H'.chr(27).chr(91).'J';
-echo "Selecciona una opció:\n";
-echo "1. Veure tasques\n";
-echo "2. Agregar tasca\n";
-echo "3. Completar tasca\n";
-echo "4. Borrar tasca\n";
-echo "5. Surt del programa\n";
+if ($argc<2 || isset($options["h"])) {
+ ayuda();
+ exit(1);
+}
 
-$opcio=readline("Opció: ");
+$command = $options['s'];
+$comandofinal = strtolower($command);
 
-switch($opcio){
-    case 's':
-        $usuaris=mostra($conexio);
+switch($comandofinal){
+    case 'mostra':
+        mostra($conexio);
         break;
-    case 'a':
-        $usuaris=inserta($conexio); 
+    case 'agrega':
+        inserta($conexio); 
         break;
-    case 'c':
-        $usuaris=completa($conexio);   
+    case 'completa':
+        completa($conexio);   
         break;
-    case 'd':
-        $usuaris=borra($conexio);
-    case '5':
-        die("Adéu.\n");
+    case 'esborra':
+        borra($conexio);
+    default:
+        ayuda();
+        break;
 }
 ?>
