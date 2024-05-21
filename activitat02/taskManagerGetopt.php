@@ -6,26 +6,26 @@ if (php_sapi_name()!="cli"){
 }
 
 include 'repoTaskManager.php';
-$conexio=OpenConn();
 
-$options=getopt('s:h');
-
-function ayuda() {
-    echo "IMPORTANT: A l'hora d'escriure la comanda has de tenir en compte les majúscules i les minúscules.\n";
-    echo "mostra: Cerca la tasca a través de la seva ID o les mostra totes.\n";
-    echo "agrega: Afageix una tasca a la llista.\n";
-    echo "completa: Marca una tasca com a finalitzada.\n";
-    echo "esborra: Elimina una tasca.\n";
-    echo "ajuda: Mostra les comandes que es mostren.\n";
+if ($argc<2) {
+    echo "En la sintaxi has d'incloure el format en el que vols guardar les dades./n";
+    echo"Exemple: php repoTaskManagerGetopt.php (sqlite o mysql)./n";
+    exit(1);
 }
 
-if ($argc<2 || isset($options["h"])) {
+$tipusdb=strtolower($argv[1]);
+$conexio=OpenConn($tipusdb);
+
+$options=getopt('s:i:h');
+
+if ($argc<3 || isset($options["h"])) {
  ayuda();
  exit(1);
 }
 
 $command = $options['s'];
 $comandofinal = strtolower($command);
+$id =isset($options['i']) ? $options['i'] :'null';
 
 switch($comandofinal){
     case 'mostra':
